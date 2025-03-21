@@ -1,0 +1,54 @@
+{
+    "cli": {
+      "version": ">= 7.5.0"
+    },
+    "build": {
+      "development": {
+        "developmentClient": true,
+        "distribution": "internal",
+        "android": {
+          "gradleCommand": ":app:assembleDebug",
+          "buildType": "apk"
+        },
+        "ios": {
+          "buildConfiguration": "Debug",
+          "resourceClass": "m-medium"
+        },
+        "env": {
+          "ENV": "development"
+        },
+        "channel": "development"
+      },
+      "preview": {
+        "distribution": "internal",
+        "android": {
+          "buildType": "apk"
+        },
+        "ios": {
+          "resourceClass": "m-medium"
+        },
+        "env": {
+          "ENV": "preview"
+        },
+        "channel": "preview"
+      },
+      "production": {
+        "android": {
+          "buildType": "app-bundle"
+        },
+        "ios": {
+          "resourceClass": "m-medium"
+        },
+        "env": {
+          "ENV": "production"
+        },
+        "channel": "production"
+      }
+    },
+    "submit": {
+      "production": {
+        "android": {},
+        "ios": {}
+      }
+    }
+  }

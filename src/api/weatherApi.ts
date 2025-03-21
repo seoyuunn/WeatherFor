@@ -2,10 +2,17 @@ import { WeatherData, WeatherForecast, WeatherCondition } from '../types/weather
 import { LocationType } from '../types/location';
 import NetInfo from '@react-native-community/netinfo';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Constants from 'expo-constants';
+import { OPENWEATHERMAP_API_KEY } from '@env';
 
-// OpenWeatherMap API 키 (실제 프로젝트에서는 환경 변수로 관리)
-const API_KEY = 'YOUR_OPENWEATHERMAP_API_KEY';
-const BASE_URL = 'https://api.openweathermap.org/data/2.5';
+// 환경별 설정 가져오기
+const apiBaseUrl = Constants.expoConfig?.extra?.apiBaseUrl || 'https://api.openweathermap.org/data/2.5';
+// 환경변수에서 API 키 가져오기
+const API_KEY = OPENWEATHERMAP_API_KEY || '2b7d69f740a6512620681f770a8ad5df';
+
+// 현재 환경 로깅
+console.log(`API Base URL: ${apiBaseUrl}`);
+console.log(`Current Environment: ${Constants.expoConfig?.extra?.environment || 'development'}`);
 
 // 날씨 코드에 따른 상태 매핑
 const weatherConditionMap: Record<number, WeatherCondition> = {
@@ -102,7 +109,7 @@ export const getCurrentWeather = async (location: LocationType): Promise<Weather
     }
     
     // API 요청 URL 구성
-    const url = `${BASE_URL}/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${API_KEY}&units=metric&lang=kr`;
+    const url = `${apiBaseUrl}/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${API_KEY}&units=metric&lang=kr`;
     
     // API 요청
     const response = await fetch(url);
@@ -177,7 +184,7 @@ export const getWeatherForecast = async (location: LocationType): Promise<Weathe
     }
     
     // API 요청 URL 구성
-    const url = `${BASE_URL}/forecast?lat=${location.latitude}&lon=${location.longitude}&appid=${API_KEY}&units=metric&lang=kr`;
+    const url = `${apiBaseUrl}/forecast?lat=${location.latitude}&lon=${location.longitude}&appid=${API_KEY}&units=metric&lang=kr`;
     
     // API 요청
     const response = await fetch(url);
