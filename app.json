@@ -1,4 +1,7 @@
 {
   "name": "WeatherFor",
-  "slug": "WeatherFor"
+  "slug": "WeatherFor",
+  "plugins": [
+    "expo-font"
+  ]
 }

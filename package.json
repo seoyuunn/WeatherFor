@@ -112,5 +112,14 @@
     "npm": "8.19.4"
   },
   "gitHead": "beb69e4cdd61b1a0fd9ae21ae58bd4bd409d7217",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "expo-location": "~18.0.8",
+    "expo-speech": "~13.0.1",
+    "expo-haptics": "~14.0.1",
+    "expo-updates": "~0.27.4",
+    "expo-font": "~13.0.4",
+    "react-native-reanimated": "~3.16.1",
+    "@react-native-community/netinfo": "11.4.1"
+  }
 }
