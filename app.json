@@ -1,7 +1,60 @@
 {
-  "name": "WeatherFor",
-  "slug": "WeatherFor",
-  "plugins": [
-    "expo-font"
-  ]
+  "expo": {
+    "name": "WeatherFor",
+    "slug": "weather-for",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icons/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/icons/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.weatherfor.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "날씨 정보를 제공하기 위해 위치 정보가 필요합니다.",
+        "UIBackgroundModes": ["audio"]
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icons/adaptive-icon.png",
+        "backgroundColor": "#000000"
+      },
+      "package": "com.weatherfor.app",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "INTERNET"
+      ],
+      "versionCode": 1
+    },
+    "web": {
+      "favicon": "./assets/icons/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "날씨 정보를 제공하기 위해 위치 정보가 필요합니다."
+        }
+      ],
+      "expo-updates"
+    ],
+    "updates": {
+      "fallbackToCacheTimeout": 0,
+      "checkAutomatically": "ON_LOAD"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "your-eas-project-id"
+      }
+    }
+  }
 }
