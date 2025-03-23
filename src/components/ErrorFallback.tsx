@@ -43,18 +43,19 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   errorTitle: {
-    ...fonts.style.subtitle,
-    color: colors.error,
-    marginVertical: 30,
+    color: colors.text,
+    marginVertical: 20,
     textAlign: 'center',
+    fontSize: 28,
+    fontWeight: '700',
+    lineHeight: 36,
   },
   buttonContainer: {
-    width: '100%',
-    alignItems: 'center',
     marginTop: 20,
+    width: '100%',
   },
   button: {
-    width: '80%',
+    backgroundColor: colors.primary,
   },
 });
 

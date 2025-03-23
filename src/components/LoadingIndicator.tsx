@@ -36,10 +36,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   loadingText: {
-    ...fonts.style.body,
+    fontSize: fonts.size.medium,
+    fontWeight: '400',
     color: colors.text,
     marginTop: 20,
     textAlign: 'center',
+    lineHeight: 42,
   },
 });
 

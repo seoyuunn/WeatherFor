@@ -90,8 +90,10 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
   },
   buttonText: {
-    ...fonts.style.button,
-    textAlign: 'center',
+    textAlign: "center",
+    fontSize: 28,
+    fontWeight: "bold",
+    lineHeight: 36,
   },
   primaryButtonText: {
     color: colors.buttonText,
