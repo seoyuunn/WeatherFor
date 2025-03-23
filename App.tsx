@@ -1,20 +1,24 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { ErrorBoundary } from 'react-error-boundary';
+import { LocationProvider } from './src/contexts/LocationContext';
+import { WeatherProvider } from './src/contexts/WeatherContext';
+import AppNavigator from './src/navigation/AppNavigator';
+import ErrorFallback from './src/components/ErrorFallback';
+import colors from './src/constants/colors';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <SafeAreaProvider>
+        <StatusBar style="light" backgroundColor={colors.background} />
+        <LocationProvider>
+          <WeatherProvider>
+            <AppNavigator />
+          </WeatherProvider>
+        </LocationProvider>
+      </SafeAreaProvider>
+    </ErrorBoundary>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

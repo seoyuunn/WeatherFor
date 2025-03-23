@@ -1,0 +1,262 @@
+import React, { useEffect, useState } from 'react';
+import {
+  StyleSheet,
+  View,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  ActivityIndicator,
+  ScrollView,
+} from 'react-native';
+import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { StatusBar } from 'expo-status-bar';
+import { Ionicons } from '@expo/vector-icons';
+
+import { RootStackParamList } from '../types/navigation';
+import colors from '../constants/colors';
+import fonts from '../constants/fonts';
+import { STRINGS } from '../constants/strings';
+import { useTTS } from '../hooks/useTTS';
+import { useWeather } from '../hooks/useWeather';
+import { useHaptic } from '../hooks/useHaptic';
+import LoadingIndicator from '../components/LoadingIndicator';
+import WeatherDisplay from '../components/WeatherDisplay';
+import AccessibleButton from '../components/AccessibleButton';
+
+type WeatherScreenRouteProp = RouteProp<RootStackParamList, 'Weather'>;
+type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
+
+const WeatherScreen: React.FC = () => {
+  const navigation = useNavigation<NavigationProps>();
+  const route = useRoute<WeatherScreenRouteProp>();
+  const { isToday } = route.params;
+  
+  const { speak, stopSpeaking, isSpeaking } = useTTS();
+  const { triggerHaptic } = useHaptic();
+  const { 
+    weatherData, 
+    forecastData, 
+    isLoading, 
+    error, // For error handling
+    refreshWeather 
+  } = useWeather();
+  
+  const [hasSpoken, setHasSpoken] = useState(false);
+
+  // Get relevant data based on whether we're showing today or tomorrow
+  const weatherInfo = isToday ? weatherData : forecastData;
+  
+  // Prepare weather description for TTS
+  const getWeatherSpeechText = () => {
+    if (!weatherInfo) return '';
+    
+    const dayText = isToday ? STRINGS.TODAY_WEATHER : STRINGS.TOMORROW_WEATHER;
+    const tempText = STRINGS.CURRENT_TEMP.replace('%s', weatherInfo.temp.toString());
+    const highText = STRINGS.HIGH_TEMP.replace('%s', weatherInfo.tempMax.toString());
+    const lowText = STRINGS.LOW_TEMP.replace('%s', weatherInfo.tempMin.toString());
+    const feelsLikeText = STRINGS.FEELS_LIKE.replace('%s', weatherInfo.feelsLike.toString());
+    
+    // Convert condition code to Korean text
+    let conditionText = '';
+    switch (weatherInfo.condition) {
+      case 'Clear':
+        conditionText = STRINGS.WEATHER_CLEAR;
+        break;
+      case 'Clouds':
+        conditionText = STRINGS.WEATHER_CLOUDY;
+        break;
+      case 'Rain':
+        conditionText = STRINGS.WEATHER_RAIN;
+        break;
+      case 'Snow':
+        conditionText = STRINGS.WEATHER_SNOW;
+        break;
+      case 'Thunderstorm':
+        conditionText = STRINGS.WEATHER_THUNDERSTORM;
+        break;
+      case 'Drizzle':
+        conditionText = STRINGS.WEATHER_DRIZZLE;
+        break;
+      case 'Mist':
+        conditionText = STRINGS.WEATHER_MIST;
+        break;
+      default:
+        conditionText = weatherInfo.condition;
+    }
+    
+    const weatherConditionText = STRINGS.WEATHER_CONDITION.replace('%s', conditionText);
+    
+    let rainText = '';
+    if (weatherInfo.rainProbability !== undefined) {
+      rainText = STRINGS.RAIN_PROBABILITY.replace('%s', weatherInfo.rainProbability.toString());
+    }
+    
+    // Compile full speech text
+    return `${dayText}. ${tempText} ${highText} ${lowText} ${feelsLikeText} ${weatherConditionText} ${rainText}`;
+  };
+  
+  // Speak weather information when data is loaded
+  useEffect(() => {
+    if (weatherInfo && !hasSpoken && !isLoading) {
+      const speechText = getWeatherSpeechText();
+      speak(speechText);
+      setHasSpoken(true);
+    }
+    
+    // Cleanup: stop speaking when component unmounts
+    return () => {
+      stopSpeaking();
+    };
+  }, [weatherInfo, isLoading]);
+  
+  // Handle tap to repeat weather information
+  const handleTapToRepeat = () => {
+    if (weatherInfo) {
+      triggerHaptic('light');
+      const speechText = getWeatherSpeechText();
+      speak(speechText);
+    }
+  };
+  
+  // Handle back button press
+  const handleBackPress = () => {
+    stopSpeaking();
+    navigation.goBack();
+  };
+  
+  // Handle retry button press on error
+  const handleRetry = () => {
+    refreshWeather();
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <StatusBar style="light" />
+      
+      <View style={styles.header}>
+        <TouchableOpacity
+          onPress={handleBackPress}
+          style={styles.backButton}
+          accessibilityRole="button"
+          accessibilityLabel={STRINGS.BACK_LABEL}
+        >
+          <Ionicons name="arrow-back" size={36} color={colors.primary} />
+          <Text style={styles.backText}>{STRINGS.BACK}</Text>
+        </TouchableOpacity>
+        
+        <Text style={styles.title}>
+          {isToday ? STRINGS.TODAY_WEATHER : STRINGS.TOMORROW_WEATHER}
+        </Text>
+      </View>
+      
+      <View style={styles.content}>
+        {isLoading ? (
+          <LoadingIndicator />
+        ) : error ? (
+          <View style={styles.errorContainer}>
+            <Text style={styles.errorText}>{STRINGS.WEATHER_ERROR}</Text>
+            <AccessibleButton
+              title={STRINGS.RETRY}
+              onPress={handleRetry}
+              style={styles.retryButton}
+            />
+          </View>
+        ) : weatherInfo ? (
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={handleTapToRepeat}
+            style={styles.weatherContainer}
+            accessibilityLabel={STRINGS.TAP_TO_REPEAT_LABEL}
+            accessibilityRole="button"
+          >
+            <WeatherDisplay weatherInfo={weatherInfo} isToday={isToday} />
+            
+            <View style={styles.repeatContainer}>
+              <Ionicons name="volume-high" size={32} color={colors.primary} />
+              <Text style={styles.repeatText}>{STRINGS.TAP_TO_REPEAT_LABEL}</Text>
+            </View>
+          </TouchableOpacity>
+        ) : (
+          <Text style={styles.noDataText}>{STRINGS.GENERIC_ERROR}</Text>
+        )}
+      </View>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+    padding: 20,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 30,
+    marginTop: 10,
+  },
+  backButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+  },
+  backText: {
+    ...fonts.style.body,
+    color: colors.primary,
+    marginLeft: 10,
+  },
+  title: {
+    ...fonts.style.subtitle,
+    color: colors.primary,
+    marginLeft: 20,
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  weatherContainer: {
+    width: '100%',
+    padding: 20,
+    borderRadius: 15,
+    backgroundColor: colors.card,
+    alignItems: 'center',
+  },
+  repeatContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 30,
+    padding: 15,
+    borderTopWidth: 1,
+    borderTopColor: '#333',
+    width: '100%',
+    justifyContent: 'center',
+  },
+  repeatText: {
+    ...fonts.style.body,
+    color: colors.primary,
+    marginLeft: 10,
+  },
+  errorContainer: {
+    alignItems: 'center',
+    padding: 20,
+  },
+  errorText: {
+    ...fonts.style.body,
+    color: colors.error,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  retryButton: {
+    width: '80%',
+  },
+  noDataText: {
+    ...fonts.style.body,
+    color: colors.text,
+    textAlign: 'center',
+  },
+});
+
+export default WeatherScreen;
