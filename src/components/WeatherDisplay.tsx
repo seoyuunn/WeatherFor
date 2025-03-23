@@ -121,9 +121,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   conditionText: {
-    ...fonts.style.weatherInfo,
+    fontSize: fonts.size.large,
+    fontWeight: '600',
     color: colors.text,
     marginBottom: 10,
+    lineHeight: 48,
   },
   tempContainer: {
     flexDirection: 'row',
@@ -146,7 +148,8 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   highLowTemp: {
-    ...fonts.style.weatherInfo,
+    fontSize: fonts.size.large,
+    fontWeight: '400',
     color: colors.text,
     marginLeft: 5,
   },
@@ -162,9 +165,11 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   detailText: {
-    ...fonts.style.body,
+    fontSize: fonts.size.medium,
+    fontWeight: '400',
     color: colors.text,
     marginLeft: 10,
+    lineHeight: 42,
   },
   alertContainer: {
     flexDirection: 'row',
@@ -175,10 +180,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   alertText: {
-    ...fonts.style.body,
+    fontSize: fonts.size.medium,
+    fontWeight: '400',
     color: colors.warning,
     marginLeft: 10,
     flex: 1,
+    lineHeight: 42,
   },
 });
 
