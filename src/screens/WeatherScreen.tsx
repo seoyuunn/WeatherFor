@@ -52,10 +52,10 @@ const WeatherScreen: React.FC = () => {
     if (!weatherInfo) return '';
     
     const dayText = isToday ? STRINGS.TODAY_WEATHER : STRINGS.TOMORROW_WEATHER;
-    const tempText = STRINGS.CURRENT_TEMP.replace('%s', weatherInfo.temp.toString());
-    const highText = STRINGS.HIGH_TEMP.replace('%s', weatherInfo.tempMax.toString());
-    const lowText = STRINGS.LOW_TEMP.replace('%s', weatherInfo.tempMin.toString());
-    const feelsLikeText = STRINGS.FEELS_LIKE.replace('%s', weatherInfo.feelsLike.toString());
+    const tempText = STRINGS.CURRENT_TEMP.replace('%s', Math.round(weatherInfo.temp).toString());
+    const highText = STRINGS.HIGH_TEMP.replace('%s', Math.round(weatherInfo.tempMax).toString());
+    const lowText = STRINGS.LOW_TEMP.replace('%s', Math.round(weatherInfo.tempMin).toString());
+    const feelsLikeText = STRINGS.FEELS_LIKE.replace('%s', Math.round(weatherInfo.feelsLike).toString());
     
     // Convert condition code to Korean text
     let conditionText = '';
@@ -85,15 +85,22 @@ const WeatherScreen: React.FC = () => {
         conditionText = weatherInfo.condition;
     }
     
+
     const weatherConditionText = STRINGS.WEATHER_CONDITION.replace('%s', conditionText);
-    
+
+    // 강수 확률
     let rainText = '';
     if (weatherInfo.rainProbability !== undefined) {
-      rainText = STRINGS.RAIN_PROBABILITY.replace('%s', weatherInfo.rainProbability.toString());
+      rainText = STRINGS.RAIN_PROBABILITY.replace('%s', Math.round(weatherInfo.rainProbability).toString());
     }
-    
-    // Compile full speech text
-    return `${dayText}. ${tempText} ${highText} ${lowText} ${feelsLikeText} ${weatherConditionText} ${rainText}`;
+  
+    // 강수량 (있는 경우)
+    let rainAmountText = '';
+    if (weatherInfo.rainAmount !== undefined) {
+      rainAmountText = STRINGS.RAIN_AMOUNT.replace('%s', Math.round(weatherInfo.rainAmount).toString());
+    }
+  
+    return `${dayText}. ${tempText} ${highText} ${lowText} ${feelsLikeText} ${weatherConditionText} ${rainText} ${rainAmountText}`;
   };
   
   // Speak weather information when data is loaded
