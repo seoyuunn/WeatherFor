@@ -90,19 +90,32 @@ const WeatherScreen: React.FC = () => {
 
     // 강수 확률
     let rainText = '';
-    if (weatherInfo.rainProbability !== undefined) {
+    if (
+      weatherInfo.rainProbability !== undefined &&
+      weatherInfo.rainProbability >= 10 // 기준치 이하일 경우 무시
+    ) {
       rainText = STRINGS.RAIN_PROBABILITY.replace('%s', Math.round(weatherInfo.rainProbability).toString());
     }
   
+    const getRainAmountDescription = (mm: number): string => {
+      if (mm < 0.1) return '';
+      if (mm <= 2) return '약한 비가 예상됩니다.';
+      if (mm <= 10) return '조금 비가 올 것으로 보입니다.';
+      if (mm <= 30) return '비가 내릴 것으로 예상됩니다. 우산을 챙기세요.';
+      return '많은 비가 예상됩니다. 외출 시 주의하세요.';
+    };
+    
     // 강수량 (있는 경우)
     let rainAmountText = '';
-    if (weatherInfo.rainAmount !== undefined) {
-      rainAmountText = STRINGS.RAIN_AMOUNT.replace('%s', Math.round(weatherInfo.rainAmount).toString());
+    if (weatherInfo.rainAmount !== undefined && weatherInfo.rainAmount >= 0.1) {
+      const mm = Math.round(weatherInfo.rainAmount);
+      const desc = getRainAmountDescription(mm);
+      rainAmountText = `예상 강수량은 ${mm}밀리미터로, ${desc}`;
     }
   
-    return `${dayText}. ${tempText} ${highText} ${lowText} ${feelsLikeText} ${weatherConditionText} ${rainText} ${rainAmountText}`;
+    return `${dayText}. ${tempText} ${highText} ${lowText} ${feelsLikeText} ${weatherConditionText} ${rainText} ${rainAmountText}`.trim();
   };
-  
+
   // Speak weather information when data is loaded
   useEffect(() => {
     if (weatherInfo && !hasSpoken && !isLoading) {
@@ -191,6 +204,7 @@ const WeatherScreen: React.FC = () => {
     </SafeAreaView>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
