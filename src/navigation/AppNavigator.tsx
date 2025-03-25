@@ -39,7 +39,10 @@ export default function AppNavigator() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={initialRoute}>
+      <Stack.Navigator
+        initialRouteName={initialRoute}
+        screenOptions={{ headerShown: false }}
+      >
         <Stack.Screen name="FirstLaunch" component={FirstLaunchScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Weather" component={WeatherScreen} />
