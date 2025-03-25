@@ -1,6 +1,6 @@
 // Text content in Korean for Text-to-Speech
 export const STRINGS = {
-    APP_NAME: '웨더포',
+    APP_NAME: '기상 예보',
     
     // Button labels
     TODAY_WEATHER: '오늘 날씨',
@@ -60,7 +60,7 @@ export const STRINGS = {
     
     // Help screen
     HELP_TITLE: '도움말',
-    HELP_INTRO: '웨더포는 시니어를 위한 간단한 날씨 앱입니다.',
+    HELP_INTRO: '웨더포는 날씨 음성 안내 앱입니다.',
     HELP_TODAY: '오늘 날씨 버튼을 누르면 현재 날씨 정보를 음성으로 알려드립니다.',
     HELP_TOMORROW: '내일 날씨 버튼을 누르면 내일 날씨 예보를 음성으로 알려드립니다.',
     HELP_REPEAT: '날씨 정보를 다시 들으려면 화면을 탭하세요.',

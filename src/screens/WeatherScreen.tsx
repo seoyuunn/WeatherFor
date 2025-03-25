@@ -161,11 +161,16 @@ const WeatherScreen: React.FC = () => {
           accessibilityRole="button"
           accessibilityLabel={STRINGS.BACK_LABEL}
         >
-          <Ionicons name="arrow-back" size={36} color={colors.primary} />
-          <Text style={styles.backText}>{STRINGS.BACK}</Text>
+          <Ionicons name="arrow-back" size={36} color={isToday ? colors.primary : colors.tomorrowBlue} />
         </TouchableOpacity>
         
-        <Text style={styles.title}>
+
+        <Text
+          style={[
+            styles.title,
+            isToday ? styles.todayTitle : styles.tomorrowTitle
+          ]}
+        >
           {isToday ? STRINGS.TODAY_WEATHER : STRINGS.TOMORROW_WEATHER}
         </Text>
       </View>
@@ -191,11 +196,12 @@ const WeatherScreen: React.FC = () => {
             accessibilityRole="button"
           >
             <WeatherDisplay weatherInfo={weatherInfo} isToday={isToday} />
-            
+            {/*
             <View style={styles.repeatContainer}>
               <Ionicons name="volume-high" size={32} color={colors.primary} />
               <Text style={styles.repeatText}>{STRINGS.TAP_TO_REPEAT_LABEL}</Text>
             </View>
+            */}
           </TouchableOpacity>
         ) : (
           <Text style={styles.noDataText}>{STRINGS.GENERIC_ERROR}</Text>
@@ -211,31 +217,31 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
     padding: 20,
+    paddingTop: 40
   },
   header: {
-    flexDirection: 'row',
+    height: 70,
+    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 30,
-    marginTop: 10,
+    marginBottom: 10,
+    position: 'relative',
   },
   backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    position: 'absolute',
+    left: 0,
     padding: 10,
   },
-  backText: {
-    color: colors.primary,
-    marginLeft: 10,
-    fontSize: fonts.size.medium,
-    fontWeight: '400',
-    lineHeight: fonts.lineHeight.normal * fonts.size.medium,
-  },
   title: {
-    color: colors.primary,
     marginLeft: 20,
     fontSize: fonts.size.xlarge,
     fontWeight: '600',
     lineHeight: fonts.lineHeight.tight * fonts.size.xlarge,
+  },
+  todayTitle: {
+    color: colors.primary, 
+  },
+  tomorrowTitle: {
+    color: '#1E90FF',
   },
   content: {
     flex: 1,
@@ -252,7 +258,7 @@ const styles = StyleSheet.create({
   repeatContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: 20,
     padding: 15,
     borderTopWidth: 1,
     borderTopColor: '#333',

@@ -10,6 +10,8 @@ const colors = {
     textSecondary: '#FFEB3B', // Yellow for secondary text
     textInverted: "#000000", // Black text for use on bright backgrounds
     textDisabled: "#777777", // Gray text for disabled elements
+
+    tomorrowBlue: '#1E90FF',
     
     // State colors
     error: '#FF5252', // Bright red for errors
@@ -23,6 +25,9 @@ const colors = {
     rainy: '#2196F3', // Blue for rainy conditions
     snowy: '#FFFFFF', // White for snowy conditions
     stormy: '#673AB7', // Purple for stormy conditions
+
+    tempHigh: '#E53935', // Red for high temperature
+    tempLow: '#1E88E5',  // Blue for low temperature
     
     // UI Elements
     button: '#FFEB3B', // Bright yellow for buttons

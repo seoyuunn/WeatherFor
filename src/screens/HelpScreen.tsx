@@ -52,9 +52,9 @@ const HelpScreen: React.FC = () => {
           style={styles.backButton}
           accessibilityRole="button"
           accessibilityLabel={STRINGS.BACK_LABEL}
+          hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
         >
           <Ionicons name="arrow-back" size={36} color={colors.primary} />
-          <Text style={styles.backText}>{STRINGS.BACK}</Text>
         </TouchableOpacity>
         
         <Text style={styles.title}>{STRINGS.HELP_TITLE}</Text>
@@ -105,18 +105,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
+    padding: 20,
+    paddingTop: 40
   },
   header: {
-    flexDirection: 'row',
+    height: 60,
+    justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.card,
+    position: 'relative',
   },
   backButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    position: 'absolute',
+    left: 10,
+    top: '50%',
+    transform: [{ translateY: -14 }],
     padding: 10,
   },
   backText: {
@@ -125,15 +127,17 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   title: {
-    ...(fonts.style.subtitle as TextStyle),
+    fontSize: fonts.size.xlarge,
+    fontWeight: 'bold',
     color: colors.primary,
-    marginLeft: 20,
+    textAlign: 'center',
   },
   scrollView: {
     flex: 1,
   },
   scrollContent: {
     padding: 20,
+    paddingBottom: 40,
   },
   helpSection: {
     backgroundColor: colors.card,
@@ -143,15 +147,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   helpText: {
-    ...(fonts.style.body as TextStyle),
+    fontSize: fonts.size.small, 
+    fontWeight: '400',
+    lineHeight: fonts.size.small * 1.5,
     color: colors.text,
     textAlign: 'center',
-    marginTop: 15,
+    marginTop: 12,
   },
   footer: {
-    padding: 20,
-    borderTopWidth: 1,
-    borderTopColor: colors.card,
+    marginTop: 30,
+    alignItems: 'center',
   },
   backHomeButton: {
     marginVertical: 0,

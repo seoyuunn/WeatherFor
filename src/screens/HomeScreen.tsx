@@ -66,14 +66,15 @@ const HomeScreen: React.FC = () => {
           title={STRINGS.TODAY_WEATHER}
           accessibilityLabel={STRINGS.TODAY_WEATHER_LABEL}
           onPress={() => handleWeatherPress(true)}
-          style={styles.mainButton}
+          style={styles.todayButton}
         />
         
         <AccessibleButton
           title={STRINGS.TOMORROW_WEATHER}
           accessibilityLabel={STRINGS.TOMORROW_WEATHER_LABEL}
           onPress={() => handleWeatherPress(false)}
-          style={styles.mainButton}
+          style={styles.tomorrowButton}
+          textStyle={{ color: colors.text }} // 흰색 텍스트로 가독성 확보
         />
       </View>
       
@@ -84,7 +85,7 @@ const HomeScreen: React.FC = () => {
           accessibilityRole="button"
           accessibilityLabel={STRINGS.HELP_LABEL}
         >
-          <Ionicons name="help-circle" size={40} color={colors.primary} />
+          <Ionicons name="help-circle" size={40} color={colors.text} />
           <Text style={styles.helpText}>{STRINGS.HELP}</Text>
         </TouchableOpacity>
       </View>
@@ -101,12 +102,12 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
     marginBottom: 40,
-    marginTop: 20,
+    marginTop: 60,
   },
   title: {
     fontSize: fonts.size.extraLarge,
     fontWeight: "bold",
-    color: colors.primary,
+    color: colors.text,
     marginBottom: 10,
   },
   buttonContainer: {
@@ -115,9 +116,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
   },
-  mainButton: {
+  todayButton: {
     marginVertical: 20,
     height: 150,
+    backgroundColor: colors.button,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 15,
+  },
+  tomorrowButton: {
+    marginVertical: 20,
+    height: 150,
+    backgroundColor: '#1E90FF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 15,
   },
   footer: {
     marginTop: 'auto',
@@ -130,9 +143,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   helpText: {
-    fontSize: fonts.size.large,
-    fontWeight: "bold",
-    color: colors.primary,
+    fontSize: fonts.size.medium,
+    fontWeight: "regular",
+    color: colors.text,
     marginLeft: 10,
   },
 });
