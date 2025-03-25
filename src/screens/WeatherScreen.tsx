@@ -203,14 +203,18 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   backText: {
-    ...fonts.style.body,
     color: colors.primary,
     marginLeft: 10,
+    fontSize: fonts.size.medium,
+    fontWeight: '400',
+    lineHeight: fonts.lineHeight.normal * fonts.size.medium,
   },
   title: {
-    ...fonts.style.subtitle,
     color: colors.primary,
     marginLeft: 20,
+    fontSize: fonts.size.xlarge,
+    fontWeight: '600',
+    lineHeight: fonts.lineHeight.tight * fonts.size.xlarge,
   },
   content: {
     flex: 1,
@@ -235,27 +239,33 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   repeatText: {
-    ...fonts.style.body,
     color: colors.primary,
     marginLeft: 10,
+    fontSize: fonts.size.medium,
+    fontWeight: '400',
+    lineHeight: fonts.lineHeight.normal * fonts.size.medium,
   },
   errorContainer: {
     alignItems: 'center',
     padding: 20,
   },
   errorText: {
-    ...fonts.style.body,
     color: colors.error,
     textAlign: 'center',
     marginBottom: 20,
+    fontSize: fonts.size.medium,
+    fontWeight: '400', 
+    lineHeight: fonts.lineHeight.normal * fonts.size.medium,
   },
   retryButton: {
     width: '80%',
   },
   noDataText: {
-    ...fonts.style.body,
     color: colors.text,
     textAlign: 'center',
+    fontSize: fonts.size.medium,
+    fontWeight: '400',
+    lineHeight: fonts.lineHeight.normal * fonts.size.medium,
   },
 });
 
