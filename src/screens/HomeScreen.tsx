@@ -104,7 +104,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   title: {
-    ...fonts.style.title,
+    fontSize: fonts.size.extraLarge,
+    fontWeight: "bold",
     color: colors.primary,
     marginBottom: 10,
   },
@@ -129,7 +130,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   helpText: {
-    ...fonts.style.body,
+    fontSize: fonts.size.large,
+    fontWeight: "bold",
     color: colors.primary,
     marginLeft: 10,
   },
