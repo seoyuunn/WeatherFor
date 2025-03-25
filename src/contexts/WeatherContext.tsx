@@ -46,7 +46,7 @@ export const WeatherProvider: React.FC<WeatherProviderProps> = ({
   const [forecastData, setForecastData] = useState<WeatherData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const location = useLocation();
+  const { location } = useLocation();
 
   // Load weather data for the current location
   const loadWeatherData = async (

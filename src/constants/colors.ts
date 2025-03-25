@@ -8,6 +8,8 @@ const colors = {
     // Functional colors
     text: '#FFFFFF', // White text for maximum contrast on black
     textSecondary: '#FFEB3B', // Yellow for secondary text
+    textInverted: "#000000", // Black text for use on bright backgrounds
+    textDisabled: "#777777", // Gray text for disabled elements
     
     // State colors
     error: '#FF5252', // Bright red for errors
@@ -27,6 +29,8 @@ const colors = {
     buttonText: '#000000', // Black text on yellow buttons for contrast
     card: '#212121', // Dark grey for card backgrounds
     divider: '#424242', // Grey for dividers
-  };
+    disabledBackground: "#333333", // Dark gray for disabled buttons
+    inputBackground: "#222222", // Dark gray for input fields
+};
   
   export default colors;

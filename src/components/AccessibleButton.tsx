@@ -20,6 +20,7 @@ interface AccessibleButtonProps {
   style?: ViewStyle;
   textStyle?: TextStyle;
   isSecondary?: boolean;
+  disabled?: boolean;
 }
 
 const AccessibleButton: React.FC<AccessibleButtonProps> = ({

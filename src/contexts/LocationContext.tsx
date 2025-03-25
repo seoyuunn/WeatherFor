@@ -15,7 +15,7 @@ interface LocationContextType {
   setManualLocation: (city: string, country: string) => Promise<void>;
 }
 
-const LocationContext = createContext<LocationContextType>({
+export const LocationContext = createContext<LocationContextType>({
   location: null,
   isLoading: false,
   error: null,

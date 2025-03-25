@@ -2,11 +2,12 @@
 const fonts = {
     // Font sizes (in points)
     size: {
-      small: 24,
-      medium: 28,
-      large: 32,
-      xlarge: 36,
-      xxlarge: 42,
+      small: 24, // Minimum size for general text
+      medium: 28, // Size for input fields, secondary text
+      large: 32, // Size for buttons, section headers
+      xlarge: 36, // Size for screen headers
+      xxlarge: 42, // Size for main titles
+      extraLarge: 48, // Size for splash screen text
     },
     
     // Font weights for dynamic styling

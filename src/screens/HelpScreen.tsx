@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
+  TextStyle,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -119,12 +120,12 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   backText: {
-    ...fonts.style.body,
+    ...(fonts.style.body as TextStyle),
     color: colors.primary,
     marginLeft: 10,
   },
   title: {
-    ...fonts.style.subtitle,
+    ...(fonts.style.subtitle as TextStyle),
     color: colors.primary,
     marginLeft: 20,
   },
@@ -142,7 +143,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   helpText: {
-    ...fonts.style.body,
+    ...(fonts.style.body as TextStyle),
     color: colors.text,
     textAlign: 'center',
     marginTop: 15,

@@ -183,3 +183,69 @@ const FirstLaunchScreen: React.FC = () => {
     </SafeAreaView>
   );
 };
+
+// Add the missing styles object
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  keyboardAvoidView: {
+    flex: 1,
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    padding: 20,
+  },
+  header: {
+    alignItems: "center",
+    marginBottom: 40,
+  },
+  title: {
+    fontSize: fonts.size.extraLarge,
+    fontWeight: "bold",
+    color: colors.primary,
+    marginBottom: 10,
+  },
+  subtitle: {
+    fontSize: fonts.size.large,
+    color: colors.text,
+    textAlign: "center",
+  },
+  permissionContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+  },
+  permissionText: {
+    fontSize: fonts.size.large,
+    color: colors.text,
+    textAlign: "center",
+    marginVertical: 20,
+  },
+  buttonContainer: {
+    width: "100%",
+    marginTop: 30,
+  },
+  button: {
+    width: "100%",
+  },
+  manualInputContainer: {
+    width: "100%",
+    marginTop: 20,
+  },
+  inputLabel: {
+    fontSize: fonts.size.medium,
+    color: colors.text,
+    marginBottom: 8,
+  },
+  input: {
+    backgroundColor: colors.inputBackground,
+    borderRadius: 8,
+    padding: 15,
+    fontSize: fonts.size.medium,
+    color: colors.text,
+    marginBottom: 20,
+    width: "100%",
+  },
+});
