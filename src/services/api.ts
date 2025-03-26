@@ -1,5 +1,10 @@
-import { WEATHER_API_KEY, API_UNITS, API_LANGUAGE } from '@env';
-import { API } from '../constants/strings';
+import Constants from 'expo-constants';
+
+const {
+  WEATHER_API_KEY,
+  API_UNITS,
+  API_LANGUAGE
+} = Constants.expoConfig?.extra ?? {};
 
 // API 기본 설정
 const BASE_URL = 'https://api.openweathermap.org/data/2.5';
