@@ -92,7 +92,7 @@ const WeatherScreen: React.FC = () => {
     let rainText = '';
     if (
       weatherInfo.rainProbability !== undefined &&
-      weatherInfo.rainProbability >= 10 // 기준치 이하일 경우 무시
+      weatherInfo.rainProbability >= 30 // 기준치 이하일 경우 무시
     ) {
       rainText = STRINGS.RAIN_PROBABILITY.replace('%s', Math.round(weatherInfo.rainProbability).toString());
     }
@@ -112,7 +112,7 @@ const WeatherScreen: React.FC = () => {
       const desc = getRainAmountDescription(mm);
       rainAmountText = `예상 강수량은 ${mm}밀리미터로, ${desc}`;
     }
-  
+
     return `${dayText}. ${isToday ? tempText : ''} ${highText} ${lowText} ${feelsLikeText} ${weatherConditionText} ${rainText} ${rainAmountText}`.trim();
   };
 

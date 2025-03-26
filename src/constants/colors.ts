@@ -26,8 +26,8 @@ const colors = {
     snowy: '#FFFFFF', // White for snowy conditions
     stormy: '#673AB7', // Purple for stormy conditions
 
-    tempHigh: '#E53935', // Red for high temperature
-    tempLow: '#1E88E5',  // Blue for low temperature
+    tomorrowHighTemp: '#FF6347', // Red for high temperature
+    tomorrowLowTemp: '#87CEEB',  // Blue for low temperature
     
     // UI Elements
     button: '#FFEB3B', // Bright yellow for buttons

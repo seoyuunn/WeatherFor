@@ -70,12 +70,12 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherInfo, isToday })
 
           <View style={styles.minMaxContainer}>
             <View style={styles.tempRow}>
-              <Ionicons name="arrow-up" size={24} color={colors.text} />
-              <Text style={styles.highLowTemp}>{Math.round(weatherInfo.tempMax)}°</Text>
+              <Ionicons name="arrow-up" size={24} color={isToday ? colors.tomorrowHighTemp : colors.tomorrowHighTemp} />
+              <Text style={[styles.highLowTemp, { color: isToday ? colors.tomorrowHighTemp : colors.tomorrowHighTemp }]}>{Math.round(weatherInfo.tempMax)}°</Text>
             </View>
             <View style={styles.tempRow}>
-              <Ionicons name="arrow-down" size={24} color={colors.text} />
-              <Text style={styles.highLowTemp}>{Math.round(weatherInfo.tempMin)}°</Text>
+              <Ionicons name="arrow-down" size={24} color={isToday ? colors.tomorrowLowTemp : colors.tomorrowLowTemp} />
+              <Text style={[styles.highLowTemp, { color: isToday ? colors.tomorrowLowTemp : colors.tomorrowLowTemp }]}>{Math.round(weatherInfo.tempMin)}°</Text>
             </View>
           </View>
         </View>
@@ -88,7 +88,7 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherInfo, isToday })
             </Text>
           </View>
           
-          {weatherInfo.rainProbability !== undefined && (
+          {weatherInfo.rainProbability !== undefined && weatherInfo.rainProbability >= 30 && (
             <View style={styles.detailRow}>
               <Ionicons name="water" size={24} color={colors.rainy} />
               <Text style={styles.detailText}>
