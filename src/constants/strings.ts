@@ -19,10 +19,10 @@ export const STRINGS = {
     TAP_TO_REPEAT_LABEL: '날씨 정보를 다시 들으려면 화면을 탭하세요',
     
     // Weather info phrases
-    CURRENT_TEMP: '현재 온도는 %s도입니다.',
-    HIGH_TEMP: '최고 온도는 %s도입니다.',
-    LOW_TEMP: '최저 온도는 %s도입니다.',
-    FEELS_LIKE: '체감 온도는 %s도입니다.',
+    CURRENT_TEMP: '현재 기온은 %s도입니다.',
+    HIGH_TEMP: '최고 기온은 %s도입니다.',
+    LOW_TEMP: '최저 기온은 %s도입니다.',
+    FEELS_LIKE: '체감 기온은 %s도입니다.',
     WEATHER_CONDITION: '날씨는 %s입니다.',
     RAIN_PROBABILITY: '강수 확률은 %s퍼센트입니다.',
     RAIN_AMOUNT: '예상 강수량은 %s밀리미터입니다.',
@@ -64,7 +64,7 @@ export const STRINGS = {
     HELP_TODAY: '오늘 날씨 버튼을 누르면 현재 날씨 정보를 음성으로 알려드립니다.',
     HELP_TOMORROW: '내일 날씨 버튼을 누르면 내일 날씨 예보를 음성으로 알려드립니다.',
     HELP_REPEAT: '날씨 정보를 다시 들으려면 화면을 탭하세요.',
-    HELP_CONTACT: '추가 도움이 필요하시면 가족에게 문의하세요.',
+    HELP_CONTACT: '도움이 필요하면 문의주세요.',
   };
   
   // Storage keys
