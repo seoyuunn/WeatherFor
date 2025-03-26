@@ -64,8 +64,10 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherInfo, isToday })
         <Text style={styles.conditionText}>{getConditionText()}</Text>
         
         <View style={styles.tempContainer}>
-          <Text style={styles.currentTemp}>{Math.round(weatherInfo.temp)}°</Text>
-          
+          {isToday && (
+           <Text style={styles.currentTemp}>{Math.round(weatherInfo.temp)}°</Text>
+           )}
+
           <View style={styles.minMaxContainer}>
             <View style={styles.tempRow}>
               <Ionicons name="arrow-up" size={24} color={colors.text} />

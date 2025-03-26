@@ -52,7 +52,7 @@ const WeatherScreen: React.FC = () => {
     if (!weatherInfo) return '';
     
     const dayText = isToday ? STRINGS.TODAY_WEATHER : STRINGS.TOMORROW_WEATHER;
-    const tempText = STRINGS.CURRENT_TEMP.replace('%s', Math.round(weatherInfo.temp).toString());
+    const tempText = isToday ? STRINGS.CURRENT_TEMP.replace('%s', Math.round(weatherInfo.temp).toString()) : '';
     const highText = STRINGS.HIGH_TEMP.replace('%s', Math.round(weatherInfo.tempMax).toString());
     const lowText = STRINGS.LOW_TEMP.replace('%s', Math.round(weatherInfo.tempMin).toString());
     const feelsLikeText = STRINGS.FEELS_LIKE.replace('%s', Math.round(weatherInfo.feelsLike).toString());
@@ -113,7 +113,7 @@ const WeatherScreen: React.FC = () => {
       rainAmountText = `예상 강수량은 ${mm}밀리미터로, ${desc}`;
     }
   
-    return `${dayText}. ${tempText} ${highText} ${lowText} ${feelsLikeText} ${weatherConditionText} ${rainText} ${rainAmountText}`.trim();
+    return `${dayText}. ${isToday ? tempText : ''} ${highText} ${lowText} ${feelsLikeText} ${weatherConditionText} ${rainText} ${rainAmountText}`.trim();
   };
 
   // Speak weather information when data is loaded
