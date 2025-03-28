@@ -70,12 +70,12 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherInfo, isToday })
 
           <View style={styles.minMaxContainer}>
             <View style={styles.tempRow}>
-              <Ionicons name="arrow-up" size={24} color={isToday ? colors.tomorrowHighTemp : colors.tomorrowHighTemp} />
-              <Text style={[styles.highLowTemp, { color: isToday ? colors.tomorrowHighTemp : colors.tomorrowHighTemp }]}>{Math.round(weatherInfo.tempMax)}°</Text>
+              <Ionicons name="arrow-up" size={24} color={isToday ? colors.HighTemp : colors.HighTemp} />
+              <Text style={[styles.highLowTemp, { color: isToday ? colors.HighTemp : colors.HighTemp }]}>{Math.round(weatherInfo.tempMax)}°</Text>
             </View>
             <View style={styles.tempRow}>
-              <Ionicons name="arrow-down" size={24} color={isToday ? colors.tomorrowLowTemp : colors.tomorrowLowTemp} />
-              <Text style={[styles.highLowTemp, { color: isToday ? colors.tomorrowLowTemp : colors.tomorrowLowTemp }]}>{Math.round(weatherInfo.tempMin)}°</Text>
+              <Ionicons name="arrow-down" size={24} color={isToday ? colors.LowTemp : colors.LowTemp} />
+              <Text style={[styles.highLowTemp, { color: isToday ? colors.LowTemp : colors.LowTemp }]}>{Math.round(weatherInfo.tempMin)}°</Text>
             </View>
           </View>
         </View>

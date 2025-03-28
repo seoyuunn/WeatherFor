@@ -2,6 +2,6 @@ module.exports = function (api) {
   api.cache(true);
   return {
     presets: ['babel-preset-expo'],
-    // ❌ plugins: [ ['module:react-native-dotenv', ...] ] 제거
-  };
+    plugins: ['react-native-reanimated/plugin'],
+  }
 };

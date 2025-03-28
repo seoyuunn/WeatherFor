@@ -6,7 +6,6 @@ import {
   ViewStyle,
   TextStyle,
   AccessibilityState,
-  Platform
 } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import colors from '../constants/colors';

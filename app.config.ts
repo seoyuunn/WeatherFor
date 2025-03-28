@@ -6,7 +6,7 @@ export default {
     slug: "weatherfor",
     version: "1.0.0",
     orientation: "portrait",
-    icon: "./assets/icons/icon_real.png",
+    icon: "./assets/icons/icon.png",
     userInterfaceStyle: "dark",
     splash: {
       image: "./assets/splash/splash.png",
@@ -21,11 +21,11 @@ export default {
       }
     },
     extra: {
-      WEATHER_API_KEY: process.env.WEATHER_API_KEY ?? "2b7d69f740a6512620681f770a8ad5df",
-      API_UNITS: process.env.API_UNITS ?? "metric",
-      API_LANGUAGE: process.env.API_LANGUAGE ?? "kr",
-      DEFAULT_CITY: process.env.DEFAULT_CITY ?? "Seoul",
-      DEFAULT_COUNTRY: process.env.DEFAULT_COUNTRY ?? "KR",
+      WEATHER_API_KEY: "2b7d69f740a6512620681f770a8ad5df",
+      API_UNITS: "metric",
+      API_LANGUAGE: "kr",
+      DEFAULT_CITY: "Seoul",
+      DEFAULT_COUNTRY: "KR",
       eas: {
         projectId: "ecf86e13-c71d-47ec-8279-0858dd1d2130"
       }
