@@ -17,7 +17,7 @@ export const isKSTToday = (timestamp: number): boolean => {
 };
 
 export const isKSTTomorrow = (timestamp: number): boolean => {
-  const nowKST = new Date(Date.now() + 9 * 60 * 60 * 1000);
+  const nowKST = getKSTNow();
   const tomorrowKST = new Date(nowKST);
   tomorrowKST.setDate(nowKST.getDate() + 1);
 

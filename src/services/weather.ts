@@ -21,6 +21,11 @@ export const fetchWeatherData = async (location: LocationType): Promise<WeatherD
       url = `${API.BASE_URL}${API.FORECAST_ENDPOINT}?q=${location.city},${location.country}&units=${API.UNITS}&lang=${API.LANGUAGE}&appid=${WEATHER_API_KEY}`;
     }
 
+    console.log('--- Forecast API Request ---');
+    console.log('location:', location);
+    console.log('API_KEY:', WEATHER_API_KEY);
+    console.log('Final URL:', url);
+
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Forecast API error: ${response.status}`);

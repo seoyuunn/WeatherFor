@@ -62,7 +62,6 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherInfo, isToday })
       
       <View style={styles.infoContainer}>
         <Text style={styles.conditionText}>{getConditionText()}</Text>
-        
         <View style={styles.tempContainer}>
           {isToday && (
            <Text style={styles.currentTemp}>{Math.round(weatherInfo.temp)}°</Text>

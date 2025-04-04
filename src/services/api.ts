@@ -1,13 +1,12 @@
 import Constants from 'expo-constants';
 
-const extra = Constants.manifest2?.extra ?? Constants.manifest?.extra ?? {};
-
+const extra = Constants.manifest2?.extra ?? Constants.extra ?? {};
 const WEATHER_API_KEY = extra.WEATHER_API_KEY ?? '';
 const API_UNITS = extra.API_UNITS ?? 'metric';
 const API_LANGUAGE = extra.API_LANGUAGE ?? 'kr';
 
 // API 기본 설정
-const BASE_URL = 'https://api.openweathermap.org/data/2.5/forecast';
+const BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
 // API 호출 기본 함수
 export const fetchFromAPI = async (endpoint: string, params: Record<string, string>) => {

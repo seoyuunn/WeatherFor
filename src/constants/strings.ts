@@ -1,4 +1,3 @@
-// Text content in Korean for Text-to-Speech
 export const STRINGS = {
     APP_NAME: '기상 예보',
     
@@ -67,8 +66,8 @@ export const STRINGS = {
     HELP_CONTACT: '도움이 필요하면 문의주세요.',
   };
   
-  // Storage keys
-  export const STORAGE_KEYS = {
+// Storage keys
+export const STORAGE_KEYS = {
     HAS_LAUNCHED: 'weatherfor_has_launched',
     LOCATION: 'weatherfor_location',
     LAST_WEATHER: 'weatherfor_last_weather',
@@ -77,8 +76,8 @@ export const STRINGS = {
     TTS_SPEED: 'weatherfor_tts_speed',
   };
   
-  // API related strings
-  export const API = {
+// API related strings
+export const API = {
     BASE_URL: 'https://api.openweathermap.org/data/2.5',
     WEATHER_ENDPOINT: '/weather',
     FORECAST_ENDPOINT: '/forecast',
@@ -86,4 +85,4 @@ export const STRINGS = {
     LANGUAGE: 'kr',
   };
   
-  export default STRINGS;
+export default STRINGS;

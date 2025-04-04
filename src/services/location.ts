@@ -53,21 +53,21 @@ export const reverseGeocode = async (
     
     if (geoCode.length > 0) {
       return {
-        city: geoCode[0].city || geoCode[0].district || geoCode[0].subregion || '서울',
+        city: geoCode[0].city || geoCode[0].district || geoCode[0].subregion || 'Seongnam-si',
         country: geoCode[0].country || 'KR',
       };
     }
     
-    // Default to Seoul, Korea if geocoding fails
+    // Default to Seongnam-si, Korea if geocoding fails
     return {
-      city: '서울',
+      city: 'Seongnam-si',
       country: 'KR',
     };
   } catch (error) {
     console.error('Error reverse geocoding:', error);
-    // Default to Seoul, Korea if geocoding fails
+    // Default to Seongnam-si, Korea if geocoding fails
     return {
-      city: '서울',
+      city: 'Seongnam-si',
       country: 'KR',
     };
   }

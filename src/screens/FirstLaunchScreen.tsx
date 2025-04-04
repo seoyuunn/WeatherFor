@@ -33,7 +33,7 @@ const FirstLaunchScreen: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [showManualInput, setShowManualInput] = useState(false);
-  const [city, setCity] = useState("서울");
+  const [city, setCity] = useState("Seongnam-si");
   const [country, setCountry] = useState("KR");
 
   // Speak welcome message when screen mounts
@@ -152,7 +152,7 @@ const FirstLaunchScreen: React.FC = () => {
                 style={styles.input}
                 value={city}
                 onChangeText={setCity}
-                placeholder="도시 (예: 서울)"
+                placeholder="도시 (예: 성남시)"
                 placeholderTextColor={colors.textSecondary}
                 accessibilityLabel="도시 입력"
               />
