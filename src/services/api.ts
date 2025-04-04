@@ -7,7 +7,7 @@ const API_UNITS = extra.API_UNITS ?? 'metric';
 const API_LANGUAGE = extra.API_LANGUAGE ?? 'kr';
 
 // API 기본 설정
-const BASE_URL = 'https://api.openweathermap.org/data/2.5';
+const BASE_URL = 'https://api.openweathermap.org/data/2.5/forecast';
 
 // API 호출 기본 함수
 export const fetchFromAPI = async (endpoint: string, params: Record<string, string>) => {
@@ -20,7 +20,7 @@ export const fetchFromAPI = async (endpoint: string, params: Record<string, stri
       lang: API_LANGUAGE || 'kr'
     });
     
-    const url = `${BASE_URL}${endpoint}?${queryParams.toString()}`;
+    const url = `${BASE_URL}${endpoint.startsWith('/') ? endpoint : `/${endpoint}`}?${queryParams.toString()}`;
     const response = await fetch(url);
     
     if (!response.ok) {
