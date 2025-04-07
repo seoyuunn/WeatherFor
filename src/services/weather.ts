@@ -23,8 +23,17 @@ export const fetchWeatherData = async (location: LocationType): Promise<WeatherD
 
     console.log('--- Forecast API Request ---');
     console.log('location:', location);
+    
+    if (!location.city || !location.country) {
+      throw new Error('도시 또는 국가 정보가 누락되었습니다.');
+    }
+
     console.log('API_KEY:', WEATHER_API_KEY);
     console.log('Final URL:', url);
+    
+    if (!url) {
+      throw new Error('날씨 API URL이 설정되지 않았습니다.');
+    }
 
     const response = await fetch(url);
     if (!response.ok) {
