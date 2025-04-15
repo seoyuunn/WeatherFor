@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -25,14 +25,16 @@ type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
 const HomeScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProps>();
   const { speak, stopSpeaking } = useTTS();
-  const { location } = useLocation();
+  const { location, requestLocation, isLoading } = useLocation();
   const { loadWeatherData } = useWeather();
+  const [locationText, setLocationText] = useState<string>('');
 
   // Preload weather data when the screen mounts for faster access
   useEffect(() => {
     if (location) {
       loadWeatherData(location, true); // Load today's weather
       loadWeatherData(location, false); // Load tomorrow's weather
+      setLocationText(location.city);
     }
     
     // Cleanup: stop any ongoing speech when component unmounts
@@ -53,6 +55,12 @@ const HomeScreen: React.FC = () => {
     navigation.navigate('Help');
   };
 
+  // Handle refresh location press
+  const handleLocationPress = async () => {
+    stopSpeaking();
+    await requestLocation();
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="light" />
@@ -60,6 +68,20 @@ const HomeScreen: React.FC = () => {
       <View style={styles.header}>
         <Text style={styles.title}>{STRINGS.APP_NAME}</Text>
       </View>
+      
+      <TouchableOpacity 
+        style={styles.locationButton}
+        onPress={handleLocationPress}
+        accessibilityRole="button"
+        accessibilityLabel={STRINGS.CURRENT_LOCATION_LABEL}
+        disabled={isLoading}
+      >
+        <Ionicons name="location" size={24} color={colors.primary} />
+        <Text style={styles.locationText}>
+          {isLoading ? STRINGS.LOCATION_LOADING : locationText || STRINGS.CURRENT_LOCATION}
+        </Text>
+        <Ionicons name="refresh" size={20} color={colors.primary} />
+      </TouchableOpacity>
       
       <View style={styles.buttonContainer}>
         <AccessibleButton
@@ -101,7 +123,7 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 20,
     marginTop: 60,
   },
   title: {
@@ -109,6 +131,25 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: colors.text,
     marginBottom: 10,
+  },
+  locationButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.card,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 12,
+    marginBottom: 30,
+    marginHorizontal: 20,
+  },
+  locationText: {
+    fontSize: fonts.size.medium,
+    color: colors.text,
+    fontWeight: "500",
+    marginHorizontal: 10,
+    flex: 1,
+    textAlign: 'center',
   },
   buttonContainer: {
     flex: 1,
@@ -127,7 +168,7 @@ const styles = StyleSheet.create({
   tomorrowButton: {
     marginVertical: 20,
     height: 150,
-    backgroundColor: '#1E90FF',
+    backgroundColor: colors.tomorrowBlue,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 15,

@@ -9,6 +9,7 @@ export const STRINGS = {
     CONFIRM: '확인',
     CANCEL: '취소',
     RETRY: '다시 시도',
+    CURRENT_LOCATION: '현재 위치',
     
     // Accessibility labels
     TODAY_WEATHER_LABEL: '오늘 날씨 확인하기',
@@ -16,11 +17,12 @@ export const STRINGS = {
     HELP_LABEL: '도움말 보기',
     BACK_LABEL: '이전 화면으로 돌아가기',
     TAP_TO_REPEAT_LABEL: '날씨 정보를 다시 들으려면 화면을 탭하세요',
+    CURRENT_LOCATION_LABEL: '현재 위치 갱신하기',
     
     // Weather info phrases
     CURRENT_TEMP: '현재 기온은 %s도입니다.',
     HIGH_TEMP: '최고 기온은 %s도입니다.',
-    LOW_TEMP: '최저 기온은 %s도입니다.',
+    LOW_TEMP: '최저 기온은 %s도입니다.', 
     FEELS_LIKE: '체감 기온은 %s도입니다.',
     WEATHER_CONDITION: '날씨는 %s입니다.',
     RAIN_PROBABILITY: '강수 확률은 %s퍼센트입니다.',
